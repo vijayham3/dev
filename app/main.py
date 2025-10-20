@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 import logging
 from app.core.logging_config import setup_logging
 from app.api.v1 import auth, products, cart, orders
@@ -27,6 +28,21 @@ app = FastAPI(
     redoc_url="/redoc",     # ReDoc
     openapi_url="/openapi.json",
     openapi_tags=tags_metadata
+)
+
+# -------------------------
+# Enable CORS for frontend
+# -------------------------
+origins = [
+    "http://localhost:3000",  # React dev server
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # GET, POST, PUT, DELETE, OPTIONS
+    allow_headers=["*"],  # allow all headers
 )
 
 # -------------------------
