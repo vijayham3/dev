@@ -1,9 +1,16 @@
-# Python virtual environment folders
+# ===================================
+# Backend - Python / FastAPI / DB
+# ===================================
+
+# Virtual environments
 venv/
-.env/
 .venv/
 ENV/
 env/
+
+# Environment files
+.env
+.env.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -26,9 +33,13 @@ htmlcov/
 .nox/
 .coverage
 .coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
 
 # Jupyter Notebook checkpoints
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # IDEs and editors
 .vscode/
@@ -36,16 +47,34 @@ htmlcov/
 *.sublime-workspace
 *.sublime-project
 
-# System files
+# System / OS files
 Thumbs.db
 .DS_Store
-
-# macOS hidden files
 *.DS_Store
 
-# Other common folders
+# Logs
 log/
 logs/
 *.log
-
 .history/
+
+# ===================================
+# Frontend - React / Node
+# ===================================
+
+sitara-frontend/node_modules/
+sitara-frontend/build/
+sitara-frontend/coverage/
+sitara-frontend/.env*
+sitara-frontend/.pnp
+sitara-frontend/.pnp.js
+sitara-frontend/npm-debug.log*
+sitara-frontend/yarn-debug.log*
+sitara-frontend/yarn-error.log*
+
+# Optional: React local files
+sitara-frontend/.idea/
+sitara-frontend/.vscode/
+sitara-frontend/.DS_Store
+
+sitara-frontend/node_modules/
