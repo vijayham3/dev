@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 from jose import jwt
+from sqlalchemy.orm import Session
+from app.models.user import User
+from passlib.context import CryptContext
 
 SECRET_KEY = "your_super_secret_key"  # load from .env in prod
 ALGORITHM = "HS256"
@@ -19,3 +22,20 @@ def decode_access_token(token: str):
         return payload
     except JWTError:
         return None
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def get_user_by_email(db: Session, email: str):
+    return db.query(User).filter(User.email == email).first()
+
+def create_user(db: Session, email: str, password: str):
+    hashed_password = pwd_context.hash(password)
+    user = User(email=email, hashed_password=hashed_password)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
